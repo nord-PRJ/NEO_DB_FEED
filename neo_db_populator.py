@@ -1,10 +1,10 @@
 import requests
-import jsons
+import json
 import datetime
 
 #DB SETUP
 import sqlite3
-conn = sqlite3.connect('example.db')
+conn = sqlite3.connect('NEO_ALL.db')
 
 c = conn.cursor()
 #END DB SETUP
@@ -21,6 +21,20 @@ def get_data(start_date, end_date):
     data = json.loads(response.content.decode())
     return data
 
-set_date("2017-07-19","2017-07-25")
+def populate_db():
+    pass
 
-print("len:" + str(len(data)))
+
+
+
+
+
+data = get_data("2017-07-19","2017-07-25")
+
+element_count = data["element_count"]
+neos = data["near_earth_objects"]
+
+# print("Element Count: ",element_count)
+# print("Near Earth Objects: ",json.dumps(neos, indent=4))
+
+# print(get_data("2017-07-19","2017-07-25"))
